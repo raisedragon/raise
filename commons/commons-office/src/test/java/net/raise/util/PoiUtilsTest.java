@@ -23,9 +23,9 @@ public class PoiUtilsTest
 	public void testGetArray() throws IOException
 	{
 		String filename = "D:\\work\\MyWork\\对接配置\\Last Mile 配置项.xlsx";
-		String[][]  datas = PoiUtils.getArray(filename, "美国");
+        String[][] datas = PoiUtils.getArray(filename, "德国");
 		int r=0;
-		for(r=95;r<131;r++){
+        for (r = 95; r < 181; r++) {
 			doIt(datas[r][0], datas[r][1]);
 		}
 		
@@ -40,7 +40,7 @@ public class PoiUtilsTest
 	}
 	
 	public void doIt(String... args){
-		String s = "insert into wt_sysconfig(name,value) values('%s','%s');";
+        String s = "merge into ad_sysconfig t1 using (select '%s' as name, '%s' as value from dual) t2 on (t1.name = t2.name) when matched then update set t1.value = t2.value when not matched then insert (ad_sysconfig_id, ad_client_id, ad_org_id, created, updated, createdby, updatedby, isactive, name, value, entitytype, configurationlevel) values (ad_sysconfig_seq.nextval, 0, 0, sysdate, sysdate, 54, 54, 'Y', t2.name, t2.value, 'U', 'S');";
 		String ss = String.format(s, args);
 		System.out.println(ss);
 	}

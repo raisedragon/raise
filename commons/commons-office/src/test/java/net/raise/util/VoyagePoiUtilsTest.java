@@ -22,7 +22,7 @@ public class VoyagePoiUtilsTest
 	@Test
 	public void testGetArray() throws IOException
 	{
-		String filename = "C:/Users/longsheng.wang/Desktop/物流计划 华南 201507 OLD.xls";
+        String filename = "C:/Users/longsheng.wang/Desktop/物流计划 华南 201507 OLD.xls";
 		String[][]  datas = PoiUtils.getArray(filename, "SEA");
 		int r=0;
 		
